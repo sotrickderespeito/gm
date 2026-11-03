@@ -5,15 +5,26 @@
 </style></head><body><main>
 <header><div class="mark">🥇🛹</div><div><div class="eyebrow">SÓTRICKDERESPEITO</div><h1>Gerador de mensagem</h1></div></header>
 <p class="intro">Preencha os dados, confira a prévia e copie a mensagem pronta para colar no WhatsApp ou Instagram.</p>
-<section class="card"><div class="field"><label for="name">NOME</label><input id="name" placeholder="Ex.: Caio Machado" autocomplete="name" autocapitalize="words"></div><div class="fields"><div class="field"><label for="age">IDADE</label><input id="age" inputmode="numeric" placeholder="Ex.: 20"></div><div class="field"><label for="years">ANOS DE SKATE</label><input id="years" inputmode="numeric" placeholder="Ex.: 5"></div></div><div class="field"><label for="number">PARTICIPANTE #</label><input id="number" inputmode="numeric" placeholder="Ex.: 125"></div><div class="hint">Os dados ficam salvos neste aparelho para agilizar o próximo cadastro.</div></section>
-<section class="card"><div class="preview-head"><h2>Prévia da mensagem</h2><span class="live">AO VIVO</span></div><pre id="preview">NOME 🥇🛹 ? anos, ? de skate,
+<section class="card">
+  <div class="field"><label for="name">NOME</label><input id="name" placeholder="Ex.: Caio Machado" autocomplete="name" autocapitalize="words"></div>
+  <div class="fields">
+    <div class="field"><label for="age">IDADE</label><input id="age" inputmode="numeric" placeholder="Ex.: 20"></div>
+    <div class="field"><label for="years">ANOS DE SKATE</label><input id="years" inputmode="numeric" placeholder="Ex.: 5"></div>
+  </div>
+  <div class="fields" style="margin-top: 15px;">
+    <div class="field"><label for="city">CIDADE + UF</label><input id="city" placeholder="Ex.: São Paulo - SP" autocapitalize="words"></div>
+    <div class="field"><label for="number">PARTICIPANTE #</label><input id="number" inputmode="numeric" placeholder="Ex.: 125"></div>
+  </div>
+  <div class="hint" style="margin-top: 15px;">Os dados ficam salvos neste aparelho para agilizar o próximo cadastro.</div>
+</section>
+<section class="card"><div class="preview-head"><h2>Prévia da mensagem</h2><span class="live">AO VIVO</span></div><pre id="preview">NOME 🥇🛹 ? anos, ? de skate, ?
 Participante #?
 #sotrickderespeito
 Venha ser o próximo! Informações PV 📩</pre><div class="actions"><button class="primary" id="copy">COPIAR MENSAGEM</button><button class="secondary" id="share" aria-label="Compartilhar">↗</button></div><div class="utility"><button class="secondary" id="clear">Limpar campos</button><button class="secondary" id="select">Selecionar texto</button></div></section>
 <p class="footer">Feito para agilizar os cadastros da SóTrickDeRespeito.<br>Funciona no iPhone e no computador, sem instalação.</p></main><div class="toast" id="toast">Mensagem copiada!</div>
 <script>
-const $=id=>document.getElementById(id),ids=['name','age','years','number'];
-function message(){return `${$('name').value.trim()||'NOME'} 🥇🛹 ${$('age').value.trim()||'?'} anos, ${$('years').value.trim()||'?'} de skate,\nParticipante #${$('number').value.trim()||'?'}\n#sotrickderespeito\nVenha ser o próximo! Informações PV 📩`}
+const $=id=>document.getElementById(id),ids=['name','age','years','city','number'];
+function message(){return `${$('name').value.trim()||'NOME'} 🥇🛹 ${$('age').value.trim()||'?'} anos, ${$('years').value.trim()||'?'} de skate, ${$('city').value.trim()||'?'}\nParticipante #${$('number').value.trim()||'?'}\n#sotrickderespeito\nVenha ser o próximo! Informações PV 📩`}
 function update(){ $('preview').textContent=message();ids.forEach(id=>localStorage.setItem('sotrick_'+id,$(id).value));}
 ids.forEach(id=>{$(id).value=localStorage.getItem('sotrick_'+id)||'';$(id).addEventListener('input',update)});update();
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1700)}
